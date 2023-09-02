@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:projeto_perguntas/questionario.dart';
-import './resultado.dart';
 import './questionario.dart';
+import './resultado.dart';
 
-main() => runApp(PerguntaApp());
+void main() => runApp(const PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
-
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
-      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      'respostas': [
+        {'texto': 'Preto', 'nota': 10},
+        {'texto': 'Vermelho', 'nota': 5},
+        {'texto': 'Verde', 'nota': 3},
+        {'texto': 'Branco', 'nota': 1},
+      ],
     },
     {
-      'texto': 'Qual seu animal favorito?',
-      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      'texto': 'Qual é o seu animal favorito?',
+      'respostas': [
+        {'texto': 'Coelho', 'nota': 10},
+        {'texto': 'Cobra', 'nota': 5},
+        {'texto': 'Elefante', 'nota': 3},
+        {'texto': 'Leão', 'nota': 1},
+      ],
     },
     {
-      'texto': 'Qual seu instutor favorito?',
-      'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+      'texto': 'Qual é o seu instrutor favorito?',
+      'respostas': [
+        {'texto': 'Leo', 'nota': 10},
+        {'texto': 'Maria', 'nota': 5},
+        {'texto': 'João', 'nota': 3},
+        {'texto': 'Pedro', 'nota': 1},
+      ],
     }
   ];
 
@@ -41,13 +53,14 @@ class _PerguntaAppState extends State<PerguntaApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Perguntas'),
+          title: const Text('Perguntas'),
         ),
         body: temPerguntaSelecionada
             ? Questionario(
                 perguntas: _perguntas,
                 perguntaSelecionada: _perguntaSelecionada,
-                quandoResponder: _responder)
+                quandoResponder: _responder,
+              )
             : Resultado(),
       ),
     );
@@ -55,6 +68,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
 }
 
 class PerguntaApp extends StatefulWidget {
+  const PerguntaApp({super.key});
+
+  @override
   _PerguntaAppState createState() {
     return _PerguntaAppState();
   }
